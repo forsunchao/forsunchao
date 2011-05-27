@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<!-- LinearLayout的组合使用 -->
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:layout_weight="1">
+		<TextView 
+			android:id="@+id/firstText" 
+			android:text="one"
+			android:background="#aa0000" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/secondText" 
+			android:text="two"
+			android:background="#00aa00" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/thirdText" 
+			android:text="three"
+			android:background="#0000aa" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/forthText" 
+			android:text="four"
+			android:background="#aaaa00" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+	</LinearLayout>
+
+	<LinearLayout 
+		android:orientation="vertical"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:layout_weight="1">
+		<TextView 
+			android:text="one"
+			android:background="#aa0000" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView  
+			android:text="two"
+			android:background="#00aa00" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView  
+			android:text="three"
+			android:background="#0000aa" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView 
+			android:text="four"
+			android:background="#aaaa00" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+	</LinearLayout>
+</LinearLayout>

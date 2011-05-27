@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1"
+    ><!-- stretchColumns：为了调整布局第二列进行拉伸 -->
+    <!-- TableLayout的简单布局 -->
+    <TableRow>
+		<TextView  
+			android:id="@+id/firstText"
+			android:text="row1_column1"
+			android:background="#aa0000"
+		    />
+		<TextView  
+			android:id="@+id/secondText"
+			android:text="row1_column2"
+			android:background="#0000aa"
+			android:gravity="center_vertical"
+		    />
+		<TextView  
+			android:id="@+id/fifthText"
+			android:text="row1_column3"
+			android:background="#00aa00"
+		    />
+	</TableRow>
+	<!-- 第二行 -->
+	<TableRow>
+		<TextView  
+			android:id="@+id/thirdText"
+			android:text="row2_column1"
+		    />
+		<TextView  
+			android:id="@+id/fourthText"
+			android:text="row2_column2"
+		    />
+	</TableRow>
+</TableLayout>
