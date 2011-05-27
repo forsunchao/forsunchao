@@ -1,0 +1,19 @@
+package org.lxh.collectiondemo.setdemo;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class TreeSetPersonAddDemo {
+
+	public static void main(String[] args) {
+		Set<Person> allSet = new TreeSet<Person>();
+		allSet.add(new Person("张三",30)); // 增加重复元素
+		allSet.add(new Person("李四",30)); // 增加重复元素
+		allSet.add(new Person("王五",31)); // 增加重复元素
+		allSet.add(new Person("赵六",32)); // 增加重复元素
+		allSet.add(new Person("孙七",32)); // 增加重复元素
+		allSet.add(new Person("孙七",32)); // 增加重复元素
+		System.out.println(allSet);
+	}
+
+}
