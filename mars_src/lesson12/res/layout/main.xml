@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/xingbie"
+    />
+<RadioGroup
+	android:id="@+id/rg1"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+	<RadioButton
+		android:id="@+id/rb1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="男"
+		/>
+	<RadioButton
+		android:id="@+id/rb2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="女"
+		/>
+</RadioGroup>
+
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/mingxing"
+    />
+<CheckBox
+	android:id="@+id/cb1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="周杰伦"
+	/>
+<CheckBox
+	android:id="@+id/cb2"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="王力宏"
+	/>
+<CheckBox
+	android:id="@+id/cb3"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="许嵩"
+	/>
+</LinearLayout>

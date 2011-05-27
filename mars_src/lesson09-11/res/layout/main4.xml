@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<!-- LinearLayout与TableLayout的组合使用 -->
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent" 
+		android:layout_weight="1">
+		<TextView 
+			android:id="@+id/firstText" 
+			android:text="one"
+			android:background="#aa0000" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/secondText" 
+			android:text="two"
+			android:background="#00aa00" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/thirdText" 
+			android:text="three"
+			android:background="#0000aa" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+		<TextView android:id="@+id/forthText" 
+			android:text="four"
+			android:background="#aaaa00" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"/>
+	</LinearLayout>
+
+	<LinearLayout 
+		android:orientation="horizontal"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent" 
+		android:layout_weight="1">
+		<TableLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:stretchColumns="0"><!-- stretchColumns：为了调整布局第[数组下标]列进行拉伸 -->
+		    <!-- TableLayout的简单布局 -->
+		    <TableRow>
+				<TextView  
+					android:id="@+id/firstText"
+					android:text="row1_column1"
+				    />
+				<TextView  
+					android:id="@+id/secondText"
+					android:text="row1_column2"
+					android:gravity="center_vertical"
+				    />
+				<TextView  
+					android:id="@+id/fifthText"
+					android:text="row1_column3"
+				    />
+			</TableRow>
+			<!-- 第二行 -->
+			<TableRow>
+				<TextView  
+					android:id="@+id/thirdText"
+					android:text="row2_column1"
+				    />
+				<TextView  
+					android:id="@+id/fourthText"
+					android:text="row2_column2"
+				    />
+			</TableRow>
+		</TableLayout>
+	</LinearLayout>
+</LinearLayout>
