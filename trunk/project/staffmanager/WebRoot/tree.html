@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+	<head>
+		<title></title>
+		<link rel="StyleSheet" href="css/dtree.css" type="text/css" />
+		<script type="text/javascript" src="js/dtree.js"></script>
+	</head>
+	<body>
+		<div class="dtree">
+			<p>
+				<a href="javascript: d.openAll();">open all</a> |
+				<a href="javascript: d.closeAll();">close all</a>
+			</p>
+	<script type="text/javascript">
+			
+		d = new dTree('d');
+		d.add(0,-1,'电子档案管理');
+		
+		d.add(1,0,'普通用户','tree.html');
+			d.add(5,1,'查询个人信息','tree.html','查询个人信息','_right');
+			d.add(6,1,'邮箱','tree.html','邮箱','_right');
+			
+		d.add(2,0,'经理','tree.html');
+			d.add(9,2,'查询员工信息','electionicdoc_manager.jsp','查询员工信息','_right');
+			d.add(10,2,'查看报表','tree.html','查看报表','_right');
+			d.add(11,2,'邮箱','tree.html','邮箱','_right');
+			
+		d.add(3,0,'人事部','tree.html');
+			d.add(13,3,'录入员工信息','addUser.jsp','录入员工信息','_right');
+			d.add(14,3,'查询员工信息','search.jsp','查询员工信息','_right');
+			d.add(15,3,'修改员工信息','searchModUser.jsp','修改员工信息','_right');
+			d.add(16,3,'邮箱','tree.html','邮箱','_right');
+		d.add(4,0,'管理员','tree.html');
+			d.add(17,4,'创建用户','tree.html','创建用户','_right');
+			d.add(18,4,'查询用户','tree.html','查询用户','_right');
+			d.add(19,4,'修改用户','tree.html','修改用户','_right');
+			d.add(20,4,'邮箱','tree.html','邮箱','_right');
+		document.write(d);
+
+	</script>
+		</div>
+	</body>
+</html>

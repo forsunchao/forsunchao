@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- 引入数据源 -->
+	<import resource="datasource.xml" />
+
+	<!-- Hibernate事务管理器 -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+
+	<!-- spring集成Hibernate的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="lobHandler" ref="lobHandler" />
+		<property name="configLocation">
+			<value>/WEB-INF/hibernate.cfg.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">5</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="nativeJdbcExtractor"
+		class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"
+		lazy-init="true" />
+	<bean id="oracleLobHandler"
+		class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor" />
+	</bean>
+
+	<!-- 通用数据库lob处理器 -->
+	<bean id="lobHandler"
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true" />
+
+
+	<!-- 动态考核库bean -->
+	<bean id="getAllAction"
+		class="com.chinasoft.sms.check.action.CheckLibraryAction">
+		<property name="cliService" ref="cliService" />
+	</bean>
+	<bean id="checkadd"
+		class="com.chinasoft.sms.check.action.CheckLibraryAction">
+		<property name="cliService" ref="cliService" />
+	</bean>
+	<bean id="CheckUpdateAction"
+		class="com.chinasoft.sms.check.action.CheckLibraryAction">
+		<property name="cliService" ref="cliService" />
+	</bean>
+
+	<bean id="checkflowAction"
+		class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+		<property name="checkservice" ref="checkservice" />
+	</bean>
+	<bean id="CheckDelectAction"
+		class="com.chinasoft.sms.check.action.CheckLibraryAction">
+		<property name="cliService" ref="cliService" />
+	</bean>
+	<bean id="cliService"
+		class="com.chinasoft.sms.check.service.ChecklibraryinfoService">
+		<property name="cliDAO" ref="cliDAO" />
+	</bean>
+
+	<bean id="cliDAO"
+		class="com.chinasoft.sms.check.dao.CheckLibraryinfoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- ******************************* -->
+
+	<!-- 动态试卷 -->
+	<bean id="getcheckpaperAction"
+		class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+		<property name="cliPaperService" ref="cliPaperService" />
+	</bean>
+
+	<bean id="kaohepaper"
+		class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+		<property name="cliPaperService" ref="cliPaperService" />
+	</bean>
+	<bean id="subCheckAction" class="com.chinasoft.sms.check.action.GetScoreAction">
+	</bean>
+	<bean id="cliPaperService"
+		class="com.chinasoft.sms.check.service.DynamicinfoServiceImpl">
+		<property name="dyi" ref="dyi" />
+		<property name="dynamicDAO" ref="dynamicDAO" />
+	</bean>
+
+	<bean id="dynamicDAO"
+		class="com.chinasoft.sms.check.dao.DynamicinfoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dyi" ref="dyi" />
+	</bean>
+
+	<bean id="dyi" class="com.chinasoft.sms.check.pojo.Dynamicinfo">
+	</bean>
+	<!-- 提交check初次审核 -->
+	<bean id="submitCheck" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+	<property name="checkservice" ref="checkservice"/>
+	</bean>
+	<!-- 下一轮审核 -->
+	<bean id="submitCheckto" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+	<property name="checkservice" ref="checkservice"/>
+	</bean>
+	<!-- ******************************* -->
+	<!-- 验证考核期及是否考核 -->
+   <bean id="vail" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+   <property name="checkservice" ref="checkservice" />
+   </bean>
+   <bean id="checkservice" class="com.chinasoft.sms.check.service.ChecklibraryinfoService">
+   <property name="vailDAO" ref="vailDAO" />
+   </bean>
+ 	<bean id="vailDAO"
+		class="com.chinasoft.sms.check.dao.StaffCheckImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+   <!-- 验证数据库中是否存在 -->
+    <bean id="vaildb" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+    <property name="checkservice" ref="checkservice"/>
+	</bean>
+	<bean id="UserDao"
+		class="com.chinasoft.sms.admin.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+		<!-- 查看考核流程和考核结果 -->
+	
+	<bean id="personcheckstep" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+	<property name="checkservice" ref="checkservice"></property>
+	</bean>
+	<bean id="getcheckResult" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+	<property name="checkservice" ref="checkservice"></property>
+	</bean>
+    <bean id="getcheckstep" class="com.chinasoft.sms.check.action.GetcheckpaperAction">
+	<property name="checkservice" ref="checkservice"></property>
+	</bean>
+	<bean id="adduser"
+		class="com.chinasoft.sms.admin.action.AddUserAction">
+		<property name="adduserservice" ref="UserService"></property>
+	</bean>
+	<bean id="queryuser"
+		class="com.chinasoft.sms.admin.action.QueryUserAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+		<bean id="doajax"
+		class="com.chinasoft.sms.admin.action.DoAjaxAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<bean id="UserService"
+		class="com.chinasoft.sms.admin.service.UserServiceImpl">
+		<property name="adduserdao" ref="UserDao"></property>
+	</bean>
+	<bean id="modifyuser"
+		class="com.chinasoft.sms.admin.action.ModifyUserAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="updateuser"
+		class="com.chinasoft.sms.admin.action.UpdateUserAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+
+	<bean id="deleteuser"
+		class="com.chinasoft.sms.admin.action.DeleteUserAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="loginDao"
+		class="com.chinasoft.sms.login.dao.loginDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="userlogin"
+		class="com.chinasoft.sms.login.action.LoginAction">
+		<property name="loginservice" ref="loginservice"></property>
+	</bean>
+	<bean id="loginservice"
+		class="com.chinasoft.sms.login.service.LoginServiceImpl">
+		<property name="dao" ref="loginDao" />
+	</bean>
+	 <!--  电子合同管理模块的配置文件jinhua.yang -->
+	<bean id="contractDAO"
+		class="com.chinasoft.sms.contract.dao.ContractDAOImple">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="contractservice"
+		class="com.chinasoft.sms.contract.service.ContractServiceImple">
+		<property name="contractDAO" ref="contractDAO" />
+	</bean>
+	 <!-- jinhua.yang -->
+	<bean id="indexAction"
+		class="com.chinasoft.sms.index.action.IndexAction"
+		scope="prototype">
+		<property name="staffService" ref="staffService" />
+        <property name="userService" ref="userService"/>
+	</bean>
+	<bean id="staffService"
+		class="com.chinasoft.sms.index.service.StaffServiceImpl">
+		<property name="dao" ref="staffDAO" />
+	</bean>
+	<bean id="staffDAO"
+		class="com.chinasoft.sms.index.dao.StaffDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="indexContract"
+		class="com.chinasoft.sms.index.action.IndexAction"
+		scope="prototype">
+		<property name="staffService" ref="staffService" />
+
+	</bean>
+	<bean id="indexElection"
+		class="com.chinasoft.sms.index.action.IndexAction"
+		scope="prototype">
+		<property name="staffService" ref="staffService" />
+
+	</bean>
+	<bean id="indexMain"
+		class="com.chinasoft.sms.index.action.IndexAction"
+		scope="prototype">
+		<property name="staffService" ref="staffService" />
+
+	</bean>
+		<bean id="updateAccountAction"
+		class="com.chinasoft.sms.account.action.updateAccountAction"
+		scope="prototype">
+		<property name="service" ref="staffUpdateService" />
+
+	</bean>
+	<bean id="staffUpdateService"
+		class="com.chinasoft.sms.account.service.staffUpdateServiceImpl">
+		<property name="dao" ref="staffUpdateDao" />
+	</bean>
+	<bean id="staffUpdateDao"
+		class="com.chinasoft.sms.account.dao.staffUpdateDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+ <!--  电子合同管理模块的配置文件 jinhua.yang -->
+	<bean id="newAction"
+		class="com.chinasoft.sms.contract.action.newAction" scope="prototype">
+		<property name="contractservice" ref="contractservice" />
+	</bean>
+	<bean id="modifyAction"
+		class="com.chinasoft.sms.contract.action.modifyAction" scope="prototype">
+		<property name="contractservice" ref="contractservice" />
+	</bean>
+	<bean id="deleteAction"
+		class="com.chinasoft.sms.contract.action.deleteAction" scope="prototype">
+		<property name="contractservice" ref="contractservice" />
+	</bean>
+	<bean id="queryAction"
+		class="com.chinasoft.sms.contract.action.queryAction">
+		<property name="contractservice" ref="contractservice" />
+	</bean>
+	<bean  id="ContractdetailsAction" class="com.chinasoft.sms.contract.action.ContractdetailsAction" >
+	<property name="contractservice" ref="contractservice" />
+         </bean>
+         <!-- jinhua.yang -->
+	
+	<bean id="userService" class="com.chinasoft.sms.electionicdoc.service.UserServiceImpl" >
+ 		<property name="userDAO" ref="userDAO"/>	
+	</bean>
+	
+	<bean id="userDAO" class="com.chinasoft.sms.electionicdoc.dao.UserDAOImpl" >
+ 		<property name="sessionFactory" ref="sessionFactory"/>	
+	</bean>
+	<bean id="dodate" class="com.chinasoft.sms.electionicdoc.action.DoQueryAction" scope="prototype">
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	<bean id="register" class="com.chinasoft.sms.electionicdoc.action.AddUserAction" >
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	<bean id="search" class="com.chinasoft.sms.electionicdoc.action.DoQueryAction" >
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	<bean id="personal" class="com.chinasoft.sms.electionicdoc.action.QueryPersonalAction" >
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	
+	<bean id="update" class="com.chinasoft.sms.electionicdoc.action.UpdateAction" >
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	<bean id="DoQueryAction" class="com.chinasoft.sms.electionicdoc.action.DoQueryAction" >
+		<property name="userService" ref="userService" />
+	</bean>
+
+   <bean id="viewchartAction" class="com.chinasoft.sms.electionicdoc.action.ChartAction" >
+ 		<property name="userService" ref="userService"/>	
+	</bean>
+	
+		   <!-- 确定为正式合同 之列出概要信息Jian.Yao 2010.09.26-->	
+	<bean id="contractFormDao" class="com.chinasoft.sms.contract.dao.ContractFormDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="contractFormService" class="com.chinasoft.sms.contract.service.ContractFormServImpl">
+		<property name="cfd" ref="contractFormDao"></property>
+	</bean>
+	
+	<bean id="contracformal" class="com.chinasoft.sms.contract.action.ContractDraftShowAct">
+		<property name="cfs" ref="contractFormService"></property>
+	</bean>
+		<!-- 确定为正式合同 之确定为正式合同Jian.Yao 2010.09.26-->	
+	<bean id="CreFormContractDao" class="com.chinasoft.sms.contract.dao.CreFormContractDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="CreFormContractService" class="com.chinasoft.sms.contract.service.CreFormContractServImpl">
+		<property name="cfcd" ref="CreFormContractDao"></property>
+	</bean>
+	
+	<bean id="cteateFormContract" class="com.chinasoft.sms.contract.action.CreFormContractAct">
+		<property name="cfcs" ref="CreFormContractService"></property>
+	</bean>
+	
+	<bean id="cteateFormContract2" class="com.chinasoft.sms.contract.action.CreFormContractAct2">
+		<property name="cfcs" ref="CreFormContractService"></property>
+	</bean>
+	
+	   <!-- 确定为正式合同 之列出草案详细信息Jian.Yao 2010.09.28-->	
+	<bean id="ConDraDeShowDaoImpl" class="com.chinasoft.sms.contract.dao.ConDraDeShowDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="ConDeShowServImpl" class="com.chinasoft.sms.contract.service.ConDeShowServImpl">
+		<property name="cdds" ref="ConDraDeShowDaoImpl"></property>
+	</bean>
+	
+	<bean id="conDeShow" class="com.chinasoft.sms.contract.action.ContractDraftDetailShowAct">
+		<property name="cdss" ref="ConDeShowServImpl"></property>
+	</bean>
+	<!-- yuxiaoyan -->
+   <bean id="checkDao" class="com.chinasoft.sms.check.dao.CheckDaoImpl">
+   <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+   <bean id="checkService" class="com.chinasoft.sms.check.service.CheckServiceImpl">
+   <property name="checkDao" ref="checkDao"/>
+   </bean>
+   <bean id="checkAction" class="com.chinasoft.sms.check.action.CheckAction">
+   <property name="checkService" ref="checkService"/>
+   </bean>
+<!-- yuxiaoyan -->
+
+
+<!-- lewenjuan -->
+<bean id="dao" class="com.chinasoft.sms.check.dao.chartDAOImpl">
+<property name="sessionFactory" ref="sessionFactory"/>	
+</bean>
+
+<bean  id="chartservice" class="com.chinasoft.sms.check.service.chartServiceImpl" >
+ <property name="dao" ref="dao"/>	
+ </bean>
+ 
+<bean  id="dochartAction" class="com.chinasoft.sms.check.action.chartaction" 	scope="prototype">
+  <property name="chartservice" ref="chartservice"/>	
+</bean>	
+<!-- lewenjuan -->
+
+</beans>

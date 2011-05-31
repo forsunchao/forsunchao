@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 上传临时文件目录 -->
+	<constant name="struts.multipart.saveDir" value="temp" />
+	<!-- 上传文件的最大字节数 -->
+	<constant name="struts.multipart.maxSize" value="10737418240" />
+	<!-- 配置服务器运行请求后缀 -->
+	<constant name="struts.action.extension" value="do" />
+	<!-- 指定全局国际化资源文件的名称 -->
+	<constant name="struts.custom.i18n.resources"
+		value="bbs2009" />
+	<!-- 编码方案 -->
+	<constant name="struts.il8n.encoding" value="GBK" />
+	<!-- 是否激活重新载入国际化文件的功能 -->
+	<constant name="struts.il8n.reload" value="false" />
+	<!-- 设置struts的显示风格 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 是否激活重新载入XML配置文件的功能 -->
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<!-- 是否激活动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<!-- 是否激活开发模式，以提供更全面的调试功能 -->
+
+	<!-- 引入各个模块的配置文件 -->
+	<package name="loginParent" extends="struts-default">
+		<global-results>
+			<result name="noLogin">login.jsp</result>
+		</global-results>
+	</package>
+
+	<!-- admin sdx -->
+	<package name="default"  extends="struts-default">
+		<action name="adduser" class="adduser">
+			<result name="success">/admin_adduser.jsp</result>
+			<result name="input">/admin_updatefalse.jsp</result>
+		</action>
+		<action name="doajax" class="doajax">
+		</action>
+		<action name="QueryUserAction" class="queryuser"
+			method="doquery">
+			<result name="success">/admin_doquery.jsp</result>
+			<result name="input">/admin_updatefalse.jsp</result>
+		</action>
+		<action name="QueryAllAction" class="queryuser">
+			<result name="success">/admin_queryall.jsp</result>
+			<result name="input">/admin_index.jsp</result>
+		</action>
+		<action name="ModifyUserAction" class="modifyuser">
+			<result name="success">/admin_modifyuser.jsp</result>
+			<result name="input">/admin_index.jsp</result>
+		</action>
+		<action name="UpdateUserAction" class="updateuser">
+			<result name="success">/admin_updateSuccess.jsp</result>
+			<result name="input">/admin_updatefalse.jsp</result>
+		</action>
+		<action name="DeleteUserAction" class="deleteuser">
+			<result name="success">/admin_updateSuccess.jsp</result>
+			<result name="input">/admin_updatefalse.jsp</result>
+		</action>
+		
+		<action name="register" class="register">
+			<result name="success">/addUserResult.jsp</result>
+			<result name="input">/addUser.jsp</result>
+		</action>
+		<action name="search" class="search">
+			<result name="success">/searchResult.jsp</result>
+			<result name="input">/search.jsp</result>
+		</action>
+		<action name="*Basicinfo" class="update" method="{1}">
+			<result name="success">/modUser.jsp</result>
+			<result name="input">/modUser.jsp</result>
+		</action>
+		<action name="personal" class="personal">
+			<result name="success">/searchResult.jsp</result>
+			<result name="input">/search.jsp</result>
+		</action>
+		<!-- 电子档案查询信息 -->
+		  <action name="lang" class="com.chinasoft.sms.electionicdoc.action.LangAction">
+       		<result>/electionicdoc_manager.jsp</result>
+       		</action>
+		<action name="dodate" class="dodate" method="dodate">
+			<result name="success">/electionicdoc_manager.jsp</result>	
+		</action>
+		<action name="doquery" class="DoQueryAction" method="doquery">
+			<result name="success">/success.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		
+	</package>
+
+
+<!-- 电子合同管理模块的配置文件 jinhua.yang -->
+	<package name="contract" namespace="/sms/contract"
+		extends="struts-default">
+
+		<interceptors>
+			<interceptor name="loginInterceptorFirst"
+				class="com.chinasoft.sms.login.interceptor.InterceptorLogin" />
+			<interceptor-stack name="loginInterceptor">
+				<interceptor-ref name="loginInterceptorFirst"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+
+		</interceptors>
+		<action name="donewquery" class="newAction"
+			method="donewquery">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_new.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="donew" class="newAction" method="donew">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_new_success.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+
+		<action name="newCompactinfo" class="newAction"
+			method="newCompactinfo">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+		</action>
+		<action name="domodifyquery" class="modifyAction"
+			method="domodifyquery">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_modify.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="domodify" class="modifyAction"
+			method="domodify">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_modify_success.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+
+		<action name="dodeletequery" class="deleteAction"
+			method="dodeletequery">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_delete.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="dodelete" class="deleteAction"
+			method="dodelete">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_delete_success.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="doquery" class="queryAction" method="doquery">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_query.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="queryCompactinfo" class="modifyAction"
+			method="queryCompactinfo">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+		</action>
+		<action name="contract_loadCon"
+			class="com.chinasoft.sms.contract.action.LoadContrantAction"
+			method="loadCon">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_template.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="contract_writeCon"
+			class="com.chinasoft.sms.contract.action.LoadContrantAction"
+			method="writeCon">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">
+				/contract_template_modify.jsp
+			</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<action name="contract_details" class="ContractdetailsAction"
+			method="dodetails">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_details.jsp</result>
+			<result name="input">/contract_error.jsp</result>
+		</action>
+		<!-- jinhua.yang -->
+		<!-- 电子合同 Jian.yao -->
+		<action name="contract_formal" class="contracformal">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success">/contract_formal.jsp</result>
+			<result name="detail">/contract_formalDetail.jsp</result>
+		</action>
+		<action name="cteateFormContract" class="cteateFormContract">
+		</action>
+		<action name="cteateFormContract2"
+			class="cteateFormContract2">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success" type="redirect">
+				/sms/contract/contract_formal.do
+			</result><!-- /contract_formMidForward.jsp -->
+			<result name="fail">
+				/contract_ministryofpersonnel.jsp
+			</result>
+		</action>
+
+		<action name="conDeShow" class="conDeShow">
+			<result name="success">/contract_formalDetail.jsp</result>
+		</action>
+		<!-- Jian.Yao-->
+	</package>
+
+
+	<!-- 员工考核系统 -->
+    <package name="check" extends="struts-default">
+    		<interceptors>
+		<interceptor  name="loginInterceptorFirst" class="com.chinasoft.sms.login.interceptor.InterceptorLogin" />
+		<interceptor-stack name="loginInterceptor">
+		<interceptor-ref name="loginInterceptorFirst"></interceptor-ref>
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+		</interceptors>
+	<action name="indexMain" class="indexAction" method="doMain">
+	      <interceptor-ref name="loginInterceptor"/>
+          <result name="success1">/departmentmanager.jsp</result>
+          <result name="success2">/persondepartment.jsp</result>
+          <result name="success3">/main.jsp</result>
+          <result name="success4">/GeneralManager.jsp</result>
+          <result name="noMain">/index.jsp</result>
+		</action>
+	<action name="getcheckpaperAction" class="getcheckpaperAction" method="getcheckpaper">
+	      <interceptor-ref name="loginInterceptor"/>
+	       <result name="success">/operatsuccess.jsp</result>
+          <result name="input">/error.jsp</result>
+          </action>
+     	<action name="kaohepaper" class="kaohepaper" method = "getPaper">
+     	<interceptor-ref name="loginInterceptor"/>
+     		<result name = "success1">/khtm.jsp</result>
+     		<result name = "success2">/departMentcheck.jsp</result>
+     		<result name = "input">/error.jsp</result>
+		</action>
+		
+		<action name="CheckDelectAction" class="CheckDelectAction" method = "deleteLibraryinfo">
+		<interceptor-ref name="loginInterceptor"/>
+		<result name = "success">/operatsuccess.jsp</result>
+         <result name = "input">/error.jsp</result>
+		</action>
+   <action name = "checkadd" class = "checkadd" method = "addLibraryinfo">
+   <interceptor-ref name="loginInterceptor"/>
+    <result name = "success">/showadd.jsp</result>
+    <result name = "input">/addcheck.jsp</result>
+	</action>
+	
+	  <action name = "CheckUpdateAction" class = "CheckUpdateAction" method = "updateLibraryinfo">
+	  <interceptor-ref name="loginInterceptor"/>
+    <result name = "success">/operatsuccess.jsp</result>
+    <result name = "input">/error.jsp</result>
+	</action>
+	<action name = "getAllAction" class = "getAllAction" method = "queryLibraryinfo">
+	<interceptor-ref name="loginInterceptor"/>
+    <result name = "success">/weihuLibrary.jsp</result>
+    <result name = "input">/error.jsp</result>
+	</action>
+	<!-- 部门经理二次审核 -->
+			<action name="checkflow" class="checkflowAction" method="viewcheck">
+			<interceptor-ref name="loginInterceptor"/>
+			<result name="aaCheck"  >/AACheck.jsp</result>
+			<result name="nnCheck"  >/NNCheck.jsp</result>
+			<result name="rejectCheck" >/RejectCheck.jsp</result>
+	</action>	
+	<!-- 总经理最后的审核 -->
+	<action name="Gcheckflow" class="checkflowAction" method="viewcheck">
+	<interceptor-ref name="loginInterceptor"/>
+			<result name="aaCheck"  >/ACheck.jsp</result>
+			<result name="nnCheck"  >/NCheck.jsp</result>
+			<result name="rejectCheck" >/RejectCheck.jsp</result>
+	</action>
+		<!-- 提交check初次审核 -->
+		<action name="submitCheck" class="submitCheck" method = "subCheck">
+		 <interceptor-ref name="loginInterceptor"/>
+			<result name="success">/2.jsp</result>
+			<result name="input">error.jsp</result>
+		</action>
+	<!-- 下一轮审核 -->
+	<action name="departbegincheck" class="com.chinasoft.sms.check.action.GetcheckpaperAction" method="commitcheck">
+	        <interceptor-ref name="loginInterceptor"/>
+	        <result name="success">/departbegincheck.jsp</result>
+			<result name="input">error.jsp</result>
+	</action>
+		<action name="BeginCheck" class="com.chinasoft.sms.check.action.GetcheckpaperAction" method="commitcheck">
+	        <interceptor-ref name="loginInterceptor"/>
+	        <result name="success">/BeginCheck.jsp</result>
+			<result name="input">error.jsp</result>
+	  </action>
+			<action name="submitCheckto" class="submitCheckto" method = "subCheckto">
+		 <interceptor-ref name="loginInterceptor"/>
+			<result name="success">/2.1.jsp</result>
+			<result name="input">error.jsp</result>
+		</action>
+		<action name="submitChecktoo" class="submitCheckto" method = "subChecktoo">
+		 <interceptor-ref name="loginInterceptor"/>
+			<result name="success">/2.2.jsp</result>
+			<result name="input">error.jsp</result>
+		</action>
+		  <!-- 验证数据库中是否已经存在 -->
+		<!--  <action name="vaildb" class="vaildb" method="vaildb">
+		<result name="success">submitChecktoo.do</result>
+		<result name="input">hasexsit.jsp</result>
+		</action> -->
+		<!-- 员工查看考核流程 -->
+			<action name="personcheckstep" class="personcheckstep" method="personstep">
+	        <interceptor-ref name="loginInterceptor"/>
+	        <result name="success">/checkStep.jsp</result>
+			<result name="input">error.jsp</result>
+	        </action>
+			<!-- 查看考核流程 -->
+			<action name="getcheckstep" class="getcheckstep" method="checkstep">
+	        <interceptor-ref name="loginInterceptor"/>
+	        <result name="success">/checkStep.jsp</result>
+			<result name="input">error.jsp</result>
+	</action>
+		<!-- 
+			<action name="checkchoose" class="checkchoose"  method = "getPaper">
+			<interceptor-ref name="loginInterceptor"/>
+		<result name="success">/khtm.jsp</result>
+		<result name = "input">/error.jsp</result>
+		</action> -->
+		<!-- 验证 -->
+		<action name="vail" class="vail"  method = "verifyDate">
+		<interceptor-ref name="loginInterceptor"/>
+		<result name="success">/demagactivecheck.jsp</result>
+		<result name = "input">/hascheck.jsp</result>
+		<result name="error">/datecheck.jsp</result>
+		</action>
+		<!-- 查看考核结果 -->
+	  <action name="getcheckResult" class="getcheckResult" method="checkResult">
+	  <interceptor-ref name="loginInterceptor"/>
+	  <result name="success">/checkResult.jsp</result>
+	  <result name = "input">/error.jsp</result>
+	  </action>
+</package>
+	<package name="login" extends="struts-default"
+		namespace="/sms/login">
+		<interceptors>
+			<interceptor name="loginInterceptorFirst"
+				class="com.chinasoft.sms.login.interceptor.InterceptorLogin" />
+			<interceptor-stack name="loginInterceptor">
+				<interceptor-ref name="loginInterceptorFirst"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+	<action name="userlogin" class="userlogin">
+			<result name="success" type="redirect">/sms/login/indexAction.do</result>
+			<result name="noLogin" >/login.jsp</result>
+			<result name="administrator">/admin_index.jsp</result>
+		</action>
+		<action name="indexAction" class="indexAction"
+			method="doIndex">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="indexContract" class="indexAction"
+			method="doContract">
+			<interceptor-ref name="loginInterceptor" />
+			<result name="noLogin">/login.jsp</result>
+			<result name="success1">/contract_manager.jsp</result>
+			<result name="success2">
+				/contract_ministryofpersonnel.jsp
+			</result>
+			<result name="success3">/contract_staff.jsp</result>
+			<result name="noIndex">/index.jsp</result>
+		</action>
+		<action name="indexElection" class="indexAction"
+			method="doElection">
+			<result name="success1">/electionicdoc_manager.jsp</result>
+			<result name="success2">
+				/electionicdoc_ministry_personnel.jsp
+			</result>
+			<result name="success3">/electionicdoc_staff.jsp</result>
+			<result name="noElection">/index.jsp</result>
+		</action>
+		<action name="indexMain" class="indexAction" method="doMain">
+			<result name="success1">/GeneralManager.jsp</result>
+			<result name="success2">/persondepartment.jsp</result>
+			<result name="success3">/main.jsp</result>
+			<result name="success4">/departmentmanager.jsp</result>
+			<result name="noMain">/index.jsp</result>
+		</action>
+		<action name="accountUpdate" class="updateAccountAction">
+		</action>
+	
+	</package>
+
+	<!-- 电子档案报表 -->
+	<package name="chart" extends="jfreechart-default">
+		<action name="viewchart" class="viewchartAction">
+			<result type="chart">
+				<param name="width">800</param>
+				<param name="height">600</param>
+			</result>
+		</action>
+		<action name="dochart" class="dochartAction">
+			<result type="chart">
+				<param name="width">800</param>
+				<param name="height">600</param>
+			</result>
+		</action>
+	</package>
+</struts>
