@@ -1,0 +1,127 @@
+
+* { 
+padding : 0;
+margin : 0;
+} 
+body { 
+font : 85% "UTF-8", Arial, Helvetica, sans-serif;
+font-size : 13px;
+color : #666666;
+} 
+img { 
+padding : 3px;
+border : 1px solid #caff7a;
+}  
+img.floatTL { 
+float : left;
+margin-right : 10px;
+margin-bottom : 0;
+margin-top : 10px;
+margin-left : 5px;
+} 
+img.floatTR { 
+float : right;
+margin-left : 7px;
+margin-bottom : 0;
+margin-top : -2px;
+margin-right : 10px;
+} 
+#wrapper { 
+margin : 0 auto;
+width :900px;
+} 
+#header { 
+color : #333;
+width :138px;
+float : left;
+padding : 10px;
+height :80px;
+margin : 0 0 5px 0;
+} 
+
+.clear { 
+clear : both;
+} 
+#navigation { 
+float : right;
+width : 556px;
+color : #333;
+padding : 0;
+height : 41px;
+margin : 0 0 5px 0;
+background-image : url(images/navbar.gif);
+background-repeat : no-repeat;
+} 
+#navigation ul { 
+margin : auto;
+padding : 0;
+list-style : none;
+} 
+#navigation ul li { 
+float : left;
+margin-right : 0;
+} 
+#navigation li a { 
+display : block;
+padding : 0 2em;
+line-height : 3em;
+color : #fffff1;
+padding : 0 1.6em 0 1.6em;
+} 
+#navigation ul a:hover { 
+color : #ffcb31;
+} 
+#righttop { 
+float : right;
+display : inline;
+margin : -60px 0 5px 0;
+background-image : url(images/top1.gif);
+width : 900px;
+height : 38px;
+background-repeat : no-repeat;
+} 
+#rightcolumn { 
+float : right;
+color : #333;
+border-left : 5px solid #3399ff;
+border-right : 5px solid #3399ff;
+margin : -35px 1px 0 0;
+min-height : 700px;
+width : 887.5px;
+display : inline;
+padding-bottom : 35px;
+} 
+#rightcolumn h2 { 
+padding-left : 5px;
+color : #0a53ff;
+font-weight : lighter;
+font-size : 1.6em;
+} 
+#rightcolumn p { 
+padding : 5px;
+text-align : justify;
+} 
+#boxes { 
+margin-top : 20px;
+} 
+#boxes h1 { 
+font-size : 1.6em;
+font-weight : lighter;
+padding-top : 10px;
+padding-left : 10px;
+color : #1c6eda;
+} 
+
+#boxes p { 
+padding-left : 10px;
+padding-right : 10px;
+} 
+#rightbottom { 
+float : right;
+display : inline;
+margin : 0 0 5px 0;
+background-image : url(images/bottom1.gif);
+width : 900px;
+height : 25px;
+background-repeat : no-repeat;
+} 

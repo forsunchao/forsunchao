@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="staffmanager"
+  id="myeclipse.1287712814546"
+  context-root="/staffmanager"
+  j2ee-spec="5.0"
+  archive="staffmanager.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

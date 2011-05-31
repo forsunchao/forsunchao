@@ -1,0 +1,43 @@
+﻿<root>
+<shijuan ID="2" startdate="1112" enddate="1123">
+<flow>
+<departmentM >曹勇</departmentM>
+</flow>
+<flow>
+<departmentM >范文娟</departmentM>
+</flow>
+<flow>
+<departmentM >于晓燕</departmentM>
+</flow>
+<flow>
+<departmentM >康健</departmentM>
+</flow>
+<flow>
+<departmentM >乐文娟</departmentM>
+</flow>
+</shijuan>
+
+<shijuan ID="1" startdate="1112" enddate="1123">
+<flow>
+<departmentM >曹勇</departmentM>
+</flow>
+<flow>
+<departmentM >于晓燕</departmentM>
+</flow>
+<flow>
+<departmentM >康健</departmentM>
+</flow>
+</shijuan>
+
+<shijuan ID="3" startdate="1112" enddate="1123">
+<flow>
+<departmentM >范文娟</departmentM>
+</flow>
+<flow>
+<departmentM >于晓燕</departmentM>
+</flow>
+<flow>
+<departmentM >乐文娟</departmentM>
+</flow>
+</shijuan>
+</root>

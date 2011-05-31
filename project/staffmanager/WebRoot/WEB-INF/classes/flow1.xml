@@ -1,0 +1,72 @@
+﻿<root>
+    <person nub="1" name="曹勇" position="4">
+           <shijuan ID="2" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >方立</departmentM>
+             </flow>
+             <flow>
+             <departmentM >王新宇</departmentM>
+             </flow>
+             <flow>
+             <departmentM >陆留俊</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+	
+    <person nub="2" name="康健" position="4">
+           <shijuan ID="1" startdate="20100911" enddate="20101123">
+            <flow>
+             <departmentM >方立</departmentM>
+             </flow>
+             <flow>
+             <departmentM >陆留俊</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+	
+    <person nub="3" name="范文娟" position="4">
+           <shijuan ID="3" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >王新宇</departmentM>
+             </flow>
+            <flow>
+             <departmentM >方立</departmentM>
+             </flow>
+             <flow>
+             <departmentM >陆留俊</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+	
+    <person nub="4"  name="于晓燕" position="4">
+           <shijuan ID="4" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >方立</departmentM>
+             </flow>
+             <flow>
+             <departmentM >陆留俊</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+        <person nub="4"  name="方立" position="1">
+           <shijuan ID="2" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >王sir</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+        <person nub="4"  name="陆留俊" position="1">
+           <shijuan ID="2" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >王sir</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+      <person nub="4"  name="王新宇" position="1">
+           <shijuan ID="3" startdate="20100911" enddate="20101123">
+             <flow>
+             <departmentM >王sir</departmentM>
+             </flow>
+            </shijuan>
+    </person>
+</root>

@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100331">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select COMPACTINFO.OUT_DATE,DEPARTMENTINFO.department_name,COMPACTINFO.salary
+ from  
+STAFFMANAGER.BASICINFO BASICINFO INNER JOIN STAFFMANAGER.COMPACTINFO COMPACTINFO ON BASICINFO.STAFF_NUMBER = COMPACTINFO.STAFF_NUMBER
+     INNER JOIN STAFFMANAGER.DEPARTMENTINFO DEPARTMENTINFO ON BASICINFO.DEPARTMENT_ID = DEPARTMENTINFO.DEPARTMENT_ID]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT
+     BASICINFO.NAME AS BASICINFO_NAME,
+     COMPACTINFO.OUT_DATE AS COMPACTINFO_OUT_DATE,
+     COMPACTINFO.COMPACT_STATE AS COMPACTINFO_COMPACT_STATE,
+     COMPACTINFO.SALARY AS COMPACTINFO_SALARY
+FROM
+     STAFFMANAGER.BASICINFO BASICINFO INNER JOIN STAFFMANAGER.COMPACTINFO COMPACTINFO ON BASICINFO.STAFF_NUMBER = COMPACTINFO.STAFF_NUMBER]]></Query>
+</TableData>
+</TableDataMap>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<RowHeight defaultValue="19">
+<![CDATA[30,19,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,31,117,146,72,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="1" r="0">
+<Expand/>
+</C>
+<C c="2" r="0">
+<O>
+<![CDATA[选择合同到期时间：]]></O>
+<Expand/>
+</C>
+<C c="3" r="0">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.ComboBox">
+<WidgetName name="到期"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.TableDataDictionary">
+<FormulaDictAttr ki="0" vi="0"/>
+<TableDataDictAttr>
+<TableData class="com.fr.data.impl.NameTableData">
+<Name>
+<![CDATA[ds1]]></Name>
+</TableData>
+</TableDataDictAttr>
+</Dictionary>
+</Widget>
+</C>
+<C c="4" r="0">
+<O>
+<![CDATA[查询]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+</Widget>
+</C>
+</CellElementList>
+</ParameterUI>
+<Parameter>
+<Attributes name="到期"/>
+<O>
+<![CDATA[2010-05-01 00:00:00]]></O>
+</Parameter>
+</ReportParameterAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<PaperSize width="13.779527559055119" height="11.693000000000001"/>
+<Margin top="0.27" left="0.7500000000000001" bottom="0.27" right="0.7500000000000001"/>
+</ReportSettings>
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[19,19,30,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[51,103,107,121,98,96,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" s="0">
+<O>
+<![CDATA[今天是：]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=today()]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="1" r="1">
+<Expand/>
+</C>
+<C c="2" r="1" cs="3" s="2">
+<O>
+<![CDATA[各部门在合同到期之前的底薪总和]]></O>
+<Expand/>
+</C>
+<C c="5" r="1">
+<Expand/>
+</C>
+<C c="6" r="1">
+<Expand/>
+</C>
+<C c="7" r="1">
+<Expand/>
+</C>
+<C c="8" r="1">
+<Expand/>
+</C>
+<C c="0" r="2">
+<Expand/>
+</C>
+<C c="2" r="2" s="3">
+<O>
+<![CDATA[部门名称]]></O>
+<Expand/>
+</C>
+<C c="3" r="2" s="4">
+<O>
+<![CDATA[合同到期时间]]></O>
+<Expand/>
+</C>
+<C c="4" r="2" s="5">
+<O>
+<![CDATA[底薪总和]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="DEPARTMENT_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="3" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="OUT_DATE"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[OUT_DATE]]></CNAME>
+<Compare op="0">
+<Parameter>
+<Attributes name="到期"/>
+<O t="Date">
+<![CDATA[1287504000000]]></O>
+</Parameter>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="3" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SALARY"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.SummaryGrouper">
+<FN>
+<![CDATA[com.fr.data.util.function.SumFunction]]></FN>
+</RG>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="2" r="4" s="6">
+<Expand/>
+</C>
+<C c="3" r="4" s="6">
+<Expand/>
+</C>
+<C c="4" r="4" s="6">
+<Expand/>
+</C>
+<C c="2" r="5" cs="7" rs="19" s="7">
+<O t="CC">
+<LayoutAttr selectedIndex="0" columns="0"/>
+<Chart name="Default">
+<Chart class="com.fr.chart.Chart">
+<GI>
+<Background name="ColorBackground" color="-16711936"/>
+<Border style="0" color="-16777216"/>
+<Alpha value="0.4000000059604645"/>
+</GI>
+<ChartAttr isJSDraw="true"/>
+<Title>
+<GI>
+<Border style="0" color="-16777216"/>
+</GI>
+<O>
+<![CDATA[各部门合同薪资总和]]></O>
+<TextAttr>
+<Attr h_align="0" alignText="0">
+<FRFont name="方正姚体" style="0" size="36" foreground="-16737793" isShadow="true"/>
+</Attr>
+</TextAttr>
+<TitleVisible value="true"/>
+</Title>
+<Plot class="com.fr.chart.plot.Bar2DPlot">
+<Plot>
+<GI>
+<Background name="ColorBackground" color="-3342388"/>
+<Border style="0" color="-16777216"/>
+<Alpha value="0.8500000238418579"/>
+</GI>
+<NewSeriesCollection>
+<SeriesAttr class="com.fr.chart.plot.SeriesAttr">
+<SeriesAttr/>
+</SeriesAttr>
+</NewSeriesCollection>
+<Legend>
+<GI>
+<Border style="0" color="-16777216"/>
+</GI>
+<Attr position="3" legendNum="10" visible="true"/>
+<FRFont name="SimSun" style="0" size="12"/>
+</Legend>
+<CateAttr isStacked="false" bgStagger="false" bgColor="-1"/>
+<CategoryAxis class="com.fr.chart.axis.CategoryAxis">
+<AxisLine style="1" color="-8355712"/>
+<AxisPosition value="3"/>
+<AxisLabelPosition value="3"/>
+<MainGridLine style="0"/>
+<SecGridLine style="0"/>
+<AxisLabelCount value="-1"/>
+<TickLine type="2" mainStroke="1.0" len="8" secType="1" secStroke="1.0" secLen="0"/>
+<Stagger value="false"/>
+<TextAttr>
+<Attr alignText="0"/>
+</TextAttr>
+</CategoryAxis>
+<ValueAxis class="com.fr.chart.axis.ValueAxis">
+<AxisLine style="1" color="-8355712"/>
+<AxisPosition value="2"/>
+<AxisLabelPosition value="3"/>
+<MainGridLine style="3" color="-8355712"/>
+<SecGridLine style="0"/>
+<AxisLabelCount value="-1"/>
+<TickLine type="2" mainStroke="1.0" len="8" secType="1" secStroke="1.0" secLen="0"/>
+<Stagger value="false"/>
+<TextAttr>
+<Attr alignText="0"/>
+</TextAttr>
+<AxisRange/>
+</ValueAxis>
+<BarAttr isHorizontal="false" overlap="-0.24" interval="2.27"/>
+<Bar2DAttr isSimulation3D="true"/>
+</Plot>
+</Plot>
+</Chart>
+</Chart>
+<ReportDataDefinition>
+<CategoryDefinition value="C4"/>
+<SeriesDefinition name="D4" value="E4"/>
+<SeriesPos value="0"/>
+<BaseOn value="true"/>
+<Top topCate="-1" topValue="-1"/>
+</ReportDataDefinition>
+</O>
+<Expand/>
+</C>
+</CellElementList>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet2">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<PaperSize width="15.748031496062993" height="11.693000000000001"/>
+<Margin top="0.27" left="0.7500000000000001" bottom="0.27" right="0.7500000000000001"/>
+</ReportSettings>
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="19">
+<![CDATA[19,30,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,72,72,72,93,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="6" r="0" cs="4" s="8">
+<O>
+<![CDATA[员工合同到期表]]></O>
+<Expand/>
+</C>
+<C c="6" r="1" s="9">
+<O>
+<![CDATA[员工姓名]]></O>
+<Expand/>
+</C>
+<C c="7" r="1" s="10">
+<O>
+<![CDATA[合同到期日期]]></O>
+<Expand/>
+</C>
+<C c="8" r="1" s="9">
+<O>
+<![CDATA[底薪]]></O>
+<Expand/>
+</C>
+<C c="9" r="1" s="9">
+<O>
+<![CDATA[签订与否]]></O>
+<Expand/>
+</C>
+<C c="6" r="2" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="BASICINFO_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="COMPACTINFO_OUT_DATE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="2" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="COMPACTINFO_SALARY"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="2" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="COMPACTINFO_COMPACT_STATE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="3" s="11">
+<Expand/>
+</C>
+<C c="7" r="3" s="11">
+<Expand/>
+</C>
+<C c="8" r="3" s="11">
+<Expand/>
+</C>
+<C c="9" r="3" s="11">
+<Expand/>
+</C>
+<C c="3" r="4" s="6">
+<Expand/>
+</C>
+<C c="4" r="4" s="6">
+<Expand/>
+</C>
+<C c="5" r="4" s="6">
+<Expand/>
+</C>
+<C c="6" r="4" s="6">
+<Expand/>
+</C>
+<C c="7" r="4" s="6">
+<Expand/>
+</C>
+</CellElementList>
+</Report>
+<StyleList>
+<Style>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-256"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-103"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-3342337"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-256"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-26164"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-3342388"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-3355393"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12" foreground="-6737050"/>
+<Background name="ColorBackground" color="-4144960"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-6737050"/>
+<Background name="ColorBackground" color="-4144960"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-1"/>
+<Background name="ColorBackground" color="-4144960"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-6737050"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>
