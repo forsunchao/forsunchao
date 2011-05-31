@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.sunchao.pojo">
+	<class name="User" table="GUESTBOOK">
+        <id name="id">
+            <generator class="sequence">
+            	<param name="sequence">GB_SEQ</param><!-- sequence's name -->
+            </generator>
+        </id>
+        <property name="time" column="time" type="java.util.Date"/>
+        <property name="title" column="title" type="java.lang.String"/>
+        <property name="content" column="content" type="java.lang.String"/>
+        <property name="name" column="name" type="java.lang.String"/>
+    </class>
+	
+</hibernate-mapping>

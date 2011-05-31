@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 
+						测试跳转 (很重要) 以下是type的取值
+				
+		dispatcher(默认)	(服务器jsp跳转)		chain(服务器action跳转)
+		redirect	(客户端jsp跳转)			redirectAction(客户端action跳转)
+		plaintext(客户端可以查看所有源代码)(里面有个charSet属性，可以设置编码)
+		
+		客户端跳转传值：type="redirect" 	/test1.jsp?name=${name}	这里xml可以使用EL表达式，jsp也需要修改成${param.name}
+		
+	-->
+	<package name="jump" extends="struts-default">
+		<!-- 测试全局结果集 -->
+		<!-- 
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		-->
+		
+		<action name="test" class="org.sunchao.action.TestAction">
+			<!-- 跳转到一个名叫test1的action，在下面可以找到 -->
+			<result name="success" type="redirectAction">test1</result>
+		</action>
+		<action name="test1" class="org.sunchao.action.Test1Action">
+			<result name="success">/test1.jsp</result>
+		</action>
+	</package>
+
+</struts>
+
