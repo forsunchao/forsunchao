@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="testJsp_login_DAO_MVC"
+  id="myeclipse.1288578373625"
+  context-root="/testJsp_login_MVC"
+  j2ee-spec="5.0"
+  archive="testJsp_login_DAO_MVC.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

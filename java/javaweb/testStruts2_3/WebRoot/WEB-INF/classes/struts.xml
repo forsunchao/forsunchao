@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 加入常量，如果出现乱码，则配置这一项，需要跟前台的JSP页面编码一致 -->
+	<!-- 如果在struts-properties属性文件中也配置了此项，则属性文件的优先级会更高 ，在web.xml中也可以配置 -->
+	<!-- 优先级：web.xml > struts-properties > struts.xml -->
+	<constant name="struts.i18n.encoding" value="GBK"></constant>
+
+	<package name="login" extends="struts-default">
+	<!-- 配置时间拦截器 -->
+		<!--  <interceptors>
+			<interceptor name="timer" class="com.opensymphony.xwork2.interceptor.TimerInterceptor"/>
+			<interceptor name="params" class="com.opensymphony.xwork2.interceptor.ParametersInterceptor"/>
+		</interceptors> -->
+		<!-- 这是默认action，当访问资源不存在时，使用友好提示界面 -->
+		<default-action-ref name="error"></default-action-ref>
+		<action name="error">
+			<result>/error.jsp</result>
+		</action>
+		
+		<action name="login" class="org.sunchao.action.LoginAction">
+			<result name="success">/loginSuc.jsp</result>
+			<result name="error">/loginFail.jsp</result>
+			
+			<!-- 这个action要引用这个拦截器 -->
+			<interceptor-ref name="timer"/>
+			<!-- 这里需要加入参数拦截器，不然会出现NullPointerException -->
+			<!-- <interceptor-ref name="params"/> -->
+			<interceptor-ref name="defaultStack"/>
+			
+		</action>
+	</package>
+	
+	<package name="curd" extends="struts-default">
+	<!--  如果不写method则可以使用动态方法调用 在jsp中这样使用 !test.add.action,但是不常用-->
+		<action name="add" class="org.sunchao.action.CURDAction" method="add">
+			<result name="success">/add.jsp</result>
+		</action>
+		<action name="delete" class="org.sunchao.action.CURDAction" method="delete">
+			<result name="success">/delete.jsp</result>
+		</action>
+		<action name="modify" class="org.sunchao.action.CURDAction" method="modify">
+			<result name="success">/modify.jsp</result>
+		</action>
+		<action name="select" class="org.sunchao.action.CURDAction" method="select">
+			<result name="success">/select.jsp</result>
+		</action>
+	</package>
+
+	<!-- 测试include，分模块分开发 -->
+	<include file="struts1.xml" />
+	<include file="struts2.xml" />
+	<include file="struts3.xml" />
+	
+
+</struts>
+
