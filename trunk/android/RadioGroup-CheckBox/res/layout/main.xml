@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+	android:id="@+id/textView01"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/app_name"
+    />
+<!-- 单选按钮的组合 -->
+<RadioGroup
+	android:id="@+id/genderGroup"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<RadioButton
+		android:id="@+id/maleButton"
+		android:text="@string/male"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+	<RadioButton
+		android:id="@+id/femaleButton"
+		android:text="@string/female"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+</RadioGroup>
+<!-- 多选按钮的使用 -->
+<CheckBox
+	android:id="@+id/swimBox"
+	android:text="@string/swim"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"/>
+<CheckBox
+	android:id="@+id/readBox"
+	android:text="@string/read"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"/>
+<CheckBox
+	android:id="@+id/runBox"
+	android:text="@string/run"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"/>
+</LinearLayout>
