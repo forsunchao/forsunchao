@@ -72,5 +72,24 @@
 		所有keys：<s:property value="testMap.keys"/><br>
 		所有values：<s:property value="testMap.values"/><br>
 		获取Map中某个(使用键来获取):<s:property value="testMap['key3']"/><br><br>
+		<hr>
+		
+		<h2>利用投影技术取List中对象的某一个属性：</h2>
+		获取学生list中的name：<s:property value="stus.{name}"/><br>
+		获取学生list中的第一个学生的name：<s:property value="stus.{name}[0]"/><br>
+		
+		<hr>
+		<h2>利用选择技术取List中对象的某一个属性：</h2>
+		获取学生list中学生年龄大于21岁的学生：<s:property value="stus.{?#this.age>21}"/><br>
+		获取学生list中学生年龄大于21岁的学生姓名：<s:property value="stus.{?#this.age>21}.{name}"/><br>
+		获取学生list中学生年龄大于21岁的学生姓名的第一个：<s:property value="stus.{?#this.age>21}.{name}[0]"/><br>
+		获取学生list中学生年龄大于21岁的学生姓名的第一个：<s:property value="stus.{^#this.age>21}.{name}"/><br>
+		获取学生list中学生年龄大于21岁的学生姓名的最后一个：<s:property value="stus.{$#this.age>21}.{name}"/><br>
+		
+		<hr>
+		<h2>获取内置对象属性：</h2>
+		request:<s:property value="#request.req"/><br>
+		session:<s:property value="#session.ses"/><br>
+		值栈:<s:debug/><br>
 	</body>
 </html>
