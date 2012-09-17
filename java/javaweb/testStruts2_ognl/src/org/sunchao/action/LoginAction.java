@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport{
 	private User user;
+	private int[] array = new int[5];
 	private List testList = new ArrayList();
 	private Set testSet = new HashSet();
 	private Map testMap = new HashMap();
@@ -31,6 +32,10 @@ public class LoginAction extends ActionSupport{
 
 	public String execute() throws Exception {
 		if(user.getUsername().trim().equals("sunchao") && user.getPassword().trim().equals("123456")) {
+			for (int i = 0; i < 5; i++) {
+				array[i] = i;
+			}
+			
 			testList.add("list1");
 			testList.add("list2");
 			testList.add("list3");
@@ -77,5 +82,13 @@ public class LoginAction extends ActionSupport{
 
 	public void setTestMap(Map testMap) {
 		this.testMap = testMap;
+	}
+
+	public int[] getArray() {
+		return array;
+	}
+
+	public void setArray(int[] array) {
+		this.array = array;
 	}
 }
